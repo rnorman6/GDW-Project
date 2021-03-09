@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool move = false;
     private float automove = 2;
     private float HP = 3;
+    public HealthBar healthbar;
     
 
     // Start is called before the first frame update
@@ -84,6 +85,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over!");
         }
 
+
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            if (healthbar)
+            {
+                healthbar.onTakeDamage(1);
+            }
+        }
 
     }
 }
