@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision : MonoBehaviour
+public class CloudMovement : MonoBehaviour
 {
-
+    public float speed = -1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,17 +14,6 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-
-        if (col.gameObject.tag == "Projectile")
-        {
-            Destroy(col.gameObject);
-            Destroy(gameObject);
-        }
-    }
-
 }

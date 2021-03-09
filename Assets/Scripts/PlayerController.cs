@@ -15,18 +15,35 @@ public class PlayerController : MonoBehaviour
     private float leftRange = -9;
     private float topRange = 5.5f;
     private float bottomRange = -2.8f;
+    private bool move = false;
+    private float automove = 2;
+    private float HP = 3;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+         
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < leftRange)
+
+        if (move == false)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * automove);
+            
+        }
+
+        if (transform.position.x > -8 && move == false)
+        {
+            move = true;
+        }
+
+
+        if (transform.position.x < leftRange && move == true)
         {
             transform.position = new Vector3(leftRange, transform.position.y, transform.position.z);
         }
@@ -60,6 +77,11 @@ public class PlayerController : MonoBehaviour
             Instantiate(sparklesPrefab, transform.position, sparklesPrefab.transform.rotation);
 
             timer = 0;
+        }
+
+        if( HP == 0)
+        {
+            Debug.Log("Game Over!");
         }
 
 
